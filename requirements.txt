@@ -1,0 +1,8 @@
+# libraries
+sortedcontainers >= 2.4.0
+
+# tooling
+black >= 21.9b0
+pylint >= 2.11.1
+isort >= 5.9.3
+docformatter >= 1.4
