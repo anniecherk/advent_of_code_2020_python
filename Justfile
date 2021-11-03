@@ -18,6 +18,7 @@ install:
 # just new-day SOMEDAY
 # aoc in browser window 1, editor w/ stars.py & utils.py split paned, jupyter notebook in browser window 2
 # copy utils.py into jupyter notebook, and ready the raw string
+# update the day in the print statement in stars.py (for sanity check)
 #
 #      During aoc:
 #
