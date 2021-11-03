@@ -15,6 +15,7 @@ install:
 #     Before aoc opens for the day:
 #
 # set up split screen: 
+# just new-day SOMEDAY
 # aoc in browser window 1, editor w/ stars.py & utils.py split paned, jupyter notebook in browser window 2
 # copy utils.py into jupyter notebook, and ready the raw string
 #

@@ -3,10 +3,6 @@ from pathlib import Path
 
 from utils import *
 
-# toggle to switch which function is run
-WHICHSTAR = star1
-INPUT_FILE = str(Path.cwd()) + "/input.txt"
-
 SAMPLE = r"""1721
 979
 366
@@ -43,6 +39,13 @@ def star1(puzzle: str) -> str:
         seen.add(elem)
     print("uhoh didn't find")
     return ""
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# toggle to switch which function is run
+WHICHSTAR = star2
+INPUT_FILE = str(Path.cwd()) + "/input.txt"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 if __name__ == "__main__":
