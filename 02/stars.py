@@ -18,9 +18,7 @@ def eval_password(min_occ: int, max_occ: int, occ: str, pwd: str) -> bool:
     letters = defaultdict(int)
     for char in pwd:
         letters[char] += 1
-    if (letters[occ] >= min_occ) and (letters[occ] <= max_occ):
-        return True
-    return False
+    return (letters[occ] >= min_occ) and (letters[occ] <= max_occ)
 
 
 def eval_password_2(first_occ: int, second_occ: int, occ: str, pwd: str) -> bool:
@@ -74,4 +72,4 @@ if __name__ == "__main__":
         with open(INPUT_FILE) as puzzle_input:
             print("Running over input.txt....")
             print(f"\n\n {WHICHSTAR(puzzle_input.read())} \n\n")
-    print("day TODO, done")
+    print("day 2, done")
