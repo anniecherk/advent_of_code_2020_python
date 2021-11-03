@@ -74,12 +74,16 @@ run-input DAY:
 
 # ~~~~~~~~~~~~~~~~~~ Clean up ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# lints & formats any python file
+lint-format PYTHON-FILE:
+    isort {{PYTHON-FILE}}
+    docformatter {{PYTHON-FILE}}
+    black {{PYTHON-FILE}}
+    pylint {{PYTHON-FILE}}
+
 # lints & formats, and copies out any changes from DAY/utils.py. DAY is dirname.
 clean DAY:
-    isort {{DAY}}
-    docformatter {{DAY}}/stars.py
-    docformatter {{DAY}}/utils.py
-    black {{DAY}}
-    pylint {{DAY}}
+    just lint-format {{DAY}}/stars.py
+    just lint-format {{DAY}}/utils.py
     cp {{DAY}}/utils.py utils.py # copy out any modifications to utils
     @echo "\n\nreminder: kill jupyter"

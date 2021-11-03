@@ -15,12 +15,16 @@ SAMPLE = r"""
 
 def star1(puzzle: str) -> str:
     return ""
-#print(star1(SAMPLE))
+
+
+# print(star1(SAMPLE))
 
 
 def star2(puzzle: str) -> str:
     return ""
-#print(star2(SAMPLE))
+
+
+# print(star2(SAMPLE))
 
 
 if __name__ == "__main__":
