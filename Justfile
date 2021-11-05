@@ -84,7 +84,7 @@ lint-format PYTHON-FILE:
 
 # lints & formats, and copies out any changes from DAY/utils.py. DAY is dirname.
 clean DAY:
-    just lint-format {{DAY}}/stars.py
-    just lint-format {{DAY}}/utils.py
-    cp {{DAY}}/utils.py utils.py # copy out any modifications to utils
+    just lint-format {{DAY}}/stars.py ; \
+    just lint-format {{DAY}}/utils.py ; \
+    cp {{DAY}}/utils.py utils.py ; \ # copy out any modifications to utils
     @echo "\n\nreminder: kill jupyter"
