@@ -86,5 +86,5 @@ lint-format PYTHON-FILE:
 clean DAY:
     just lint-format {{DAY}}/stars.py ; \
     just lint-format {{DAY}}/utils.py ; \
-    cp {{DAY}}/utils.py utils.py ; \
+    cp {{DAY}}/utils.py utils.py
     @echo "\n\nreminder: kill jupyter"
