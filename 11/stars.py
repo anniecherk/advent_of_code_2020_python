@@ -38,12 +38,10 @@ def update_star1(row: int, col: int, room: List[str]) -> str:
     if col != len(room[0]) - 1:  # right three neighbors
         filled += 1 if room[row][col + 1] == "#" else 0
 
-    # update rules:
-    """
-    If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
-    If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
-    Otherwise, the seat's state does not change.
-    """
+    # If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
+    # If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
+    # Otherwise, the seat's state does not change.
+
     if room[row][col] == "L":
         if filled == 0:
             return "#"
@@ -52,6 +50,111 @@ def update_star1(row: int, col: int, room: List[str]) -> str:
             return "L"
     return room[row][col]
 
+
+def update_star2(row: int, col: int, room: List[str]) -> str:
+    filled = 0
+    current_row = row
+    current_col = col
+    # check above:
+    while current_row != 0:
+        chair = room[current_row - 1][current_col]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row -= 1
+    current_row = row
+    # check above and to the left:
+    while (current_row != 0) and (current_col != 0):
+        chair = room[current_row - 1][current_col - 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row -= 1
+        current_col -= 1
+    current_row = row
+    current_col = col
+    # check above and to the right:
+    while (current_row != 0) and (current_col != len(room[0]) - 1):
+        chair = room[current_row - 1][current_col + 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row -= 1
+        current_col += 1
+    current_row = row
+    current_col = col
+    # check below
+    while current_row != len(room) - 1:
+        chair = room[current_row + 1][current_col]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row += 1
+    current_row = row
+    # check below and to the left
+    while (current_row != len(room) - 1) and (current_col != 0):
+        chair = room[current_row + 1][current_col - 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row += 1
+        current_col -= 1
+    current_row = row
+    current_col = col
+    # check below and to the right
+    while (current_row != len(room) - 1) and (current_col != len(room[0]) - 1):
+        chair = room[current_row + 1][current_col + 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_row += 1
+        current_col += 1
+    current_row = row
+    current_col = col
+    # check to the left:
+    while current_col != 0:
+        chair = room[current_row][current_col - 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_col -= 1
+    current_col = col
+    # check to the right:
+    while current_col != len(room[0]) - 1:
+        chair = room[current_row][current_col + 1]
+        if chair == "#":
+            filled += 1
+            break
+        if chair == "L":
+            break
+        current_col += 1
+    current_row = col
+
+    # If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
+    # If a seat is occupied (#) and five or more seats adjacent to it are also occupied, the seat becomes empty.
+    # Otherwise, the seat's state does not change.
+
+    if room[row][col] == "L":
+        if filled == 0:
+            return "#"
+    elif room[row][col] == "#":
+        if filled >= 5:
+            return "L"
+    return room[row][col]
 
 
 def count_empty_seats(room: List[str]) -> int:
@@ -77,9 +180,16 @@ def star1(puzzle: str) -> str:
     return count_empty_seats(stable_room)
 
 
+def star2(puzzle: str) -> str:
+    room = []
+    new_room = puzzle.split("\n")
+    stable_room = fixed_point(room, new_room, update_star2)
+    return count_empty_seats(stable_room)
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # toggle to switch which function is run
-WHICHSTAR = star1
+WHICHSTAR = star2
 INPUT_FILE = str(Path.cwd()) + "/input.txt"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
